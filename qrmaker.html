@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Dino QR & WiFi Maker</title>
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">QR & WiFi Generator</h1>
+        
+        <div class="flex mb-4 border-b">
+            <button onclick="switchMode('text')" id="tab-text" class="flex-1 py-2 font-bold border-b-2 border-blue-600 text-blue-600">일반 텍스트</button>
+            <button onclick="switchMode('wifi')" id="tab-wifi" class="flex-1 py-2 font-bold text-gray-500">와이파이</button>
+        </div>
+
+        <div id="input-text-container">
+            <input type="text" id="text-input" placeholder="URL 또는 텍스트 입력" 
+                   class="w-full p-3 border rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+
+        <div id="input-wifi-container" class="hidden text-left">
+            <input type="text" id="wifi-ssid" placeholder="와이파이 이름 (SSID)" class="w-full p-3 border rounded-lg mb-2 outline-none">
+            <input type="password" id="wifi-pw" placeholder="비밀번호" class="w-full p-3 border rounded-lg mb-4 outline-none">
+        </div>
+
+        <div id="qrcode" class="flex justify-center mb-6 bg-gray-50 p-4 rounded-lg"></div>
+
+        <button onclick="downloadQR()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+            QR 이미지 저장
+        </button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
