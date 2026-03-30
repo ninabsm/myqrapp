@@ -2,26 +2,34 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나만의 QR 코드 메이커</title>
+    <title>Dino QR & WiFi Maker</title>
+    <script src="https://unpkg.com/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
+<body class="bg-gray-100 min-h-screen flex items-center justify-center p-4">
 
     <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md text-center">
-        <h1 class="text-2xl font-bold mb-6 text-gray-800">QR Code Generator</h1>
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">QR & WiFi Generator</h1>
         
-        <input type="text" id="text-input" 
-               placeholder="URL 또는 텍스트를 입력하세요" 
-               class="w-full p-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500">
-
-        <div id="qrcode-container" class="flex justify-center mb-6 p-4 bg-gray-50 rounded-lg min-h-[200px] items-center">
-            <div id="qrcode"></div>
+        <div class="flex mb-4 border-b">
+            <button onclick="switchMode('text')" id="tab-text" class="flex-1 py-2 font-bold border-b-2 border-blue-600 text-blue-600">일반 텍스트</button>
+            <button onclick="switchMode('wifi')" id="tab-wifi" class="flex-1 py-2 font-bold text-gray-500">와이파이</button>
         </div>
 
-        <button onclick="downloadQR()" id="download-btn" class="hidden w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
-            이미지로 저장하기
+        <div id="input-text-container">
+            <input type="text" id="text-input" placeholder="URL 또는 텍스트 입력" 
+                   class="w-full p-3 border rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+
+        <div id="input-wifi-container" class="hidden text-left">
+            <input type="text" id="wifi-ssid" placeholder="와이파이 이름 (SSID)" class="w-full p-3 border rounded-lg mb-2 outline-none">
+            <input type="password" id="wifi-pw" placeholder="비밀번호" class="w-full p-3 border rounded-lg mb-4 outline-none">
+        </div>
+
+        <div id="qrcode" class="flex justify-center mb-6 bg-gray-50 p-4 rounded-lg"></div>
+
+        <button onclick="downloadQR()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+            QR 이미지 저장
         </button>
     </div>
 
